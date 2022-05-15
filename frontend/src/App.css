@@ -1,0 +1,260 @@
+* {
+	box-sizing: border-box;
+  
+	padding: 0;
+	margin: 0;
+}
+
+html {
+ 
+    --image-gradient: linear-gradient(to bottom left,#095af092, #a904f5ce);
+   
+  }
+  
+  ::-webkit-scrollbar {
+    width: 7px ;
+    
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #0542b5;
+    border-radius: 12px;
+  }
+  .imgBack{
+    background-image: var(--image-gradient),url("siginin.jpg") !important;
+  }
+  .login__form__logo {
+    width: 200px;
+    height: 200px;
+}
+.css-fxbtpg {
+ background-color: #ddddda4b !important ;  
+ margin-left: 170px !important;   
+
+}
+.svgicon{
+ display: flex !important;
+ align-items: center !important;
+}
+
+.home{
+  background-image: url("slider.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+ 
+  width: 100%;
+  
+  height: 100%;
+  opacity: 1;
+  visibility: inherit;
+  z-index:20 !important;
+}
+
+.css-t5ouwv-MuiPaper-root {
+ 
+    border: solid 2px #095af0;
+    border-radius: 5px;
+    box-shadow: none !important;
+     
+    display: flex !important;
+    justify-content: space-around !important;
+}
+
+
+
+.css-1slnj5u-MuiPaper-root {
+    margin-left: 50px;
+    margin-right: 450px;
+    box-shadow: none !important;
+    border: solid 2px#095af0!important;
+    display: flex !important;
+    
+    
+}
+/*--charts-section--*/ 
+.dashboard-welcome {
+  grid-column: 1 / span 2;
+  display: grid;
+  grid-template-columns: calc(74% - 20px) calc(26% - 20px);
+  gap: 40px;
+}
+
+  .dashboard-welcome__content__body__welcome {
+    font-size: 25px !important;
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding-bottom: 17px;
+}
+.dashboard-welcome__content__body__member {
+  padding-bottom: 10px !important;
+  font-size: 20px !important;
+}
+.dashboard-welcome__content__body__progress {
+  color: #064ac7;
+  font-weight: bold;
+}
+.primary-button__btn-primary {
+  background-color:   #095af0;
+  
+  border-color: #a904f5 !important;
+  border-radius: 5px !important;
+  min-width: 120px !important;
+  padding-right: 20px !important;
+  padding-left: 20px !important;
+  height: 40px !important;
+  color: #fff !important;
+  
+  font-weight: 600 !important;
+  font-size: 15px;
+  font-size: .75rem;
+  border: solid 2px #C2CBC5 !important;
+}
+
+
+.dashboard-welcome__image {
+
+  align-self: center;
+  width: 100% !important;
+}
+.sign__image{
+align-self: center !important;
+padding-top: 0% !important;
+  width: 100% !important;
+  height:80px !important;
+  
+}
+.dashboard-skills-achievements__body__content__skill__name {
+font-size: 14px !important;
+font-size: .875rem;
+color: #0f0f19 !important;
+}
+.css-19r6kue-MuiContainer-root{
+display: flex !important;
+margin: 0px !important;
+width: 100% !important;
+  height: 100% !important;
+  flex-flow: row wrap !important;
+}
+.css-2uchni{
+margin: 0 8px !important;
+display: flex !important;
+}
+.css-2s90m6-MuiAvatar-root{
+margin-right: 4px;
+border: solid 1px #aaaeb3;
+border-radius: 50%;
+padding: 3px;
+}
+.css-jcn4dz-MuiBadge-badge{
+background-color: #aaaeb3 !important;
+color: #fff;
+}
+
+
+.x-flex-h-between-v-center {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.global-footer {
+height: 50px;
+background-color: #0542b5;
+padding: 4px 30px 0px 300px;
+color: #fffdfd;
+font-size: 0.81rem;
+font-weight: 300;
+}
+.x-flex-h-start-v-center {
+display: flex;
+align-items: center;
+justify-content: flex-start;
+}
+.global-footer .middle-item {
+padding: 0 10px;
+}
+.x-flex-h-start-v-center {
+display: flex;
+align-items: center;
+justify-content: flex-start;
+}
+.global-footer a {
+
+color: inherit;
+}
+small {
+font-size: 80%;
+
+}
+/*--home page--*/
+.maincontainer{
+  position: relative;
+  width: 100%;
+    padding-right: 15px;
+}
+
+.vc_column_container {
+  padding-left: 0;
+  padding-right: 0;
+  width: 180px ;
+ display: flex;
+justify-content: center !important;
+
+}
+.backk{
+  background-color: #c2cbc538;
+}
+.order{
+  background-color: #fff !important;
+  margin-left: 330px !important;
+  margin-top: 20px ;
+  margin-right: 40px;
+  margin-bottom:20px ;
+}
+.css-gi7hi0-MuiTypography-root{
+  margin-top:8px !important;
+  margin-left: 8px !important;
+  color: #94B0B7 !important;
+  font-weight: 700 !important;
+}
+@media only screen and (min-width: 768px){
+  .css-cvumne-MuiDrawer-docked{
+      position: fixed !important;
+      top: 0 !important;
+  }
+  }
+  .css-cvumne-MuiDrawer-docked{
+      z-index: 1100 !important;
+  }
+  @media only screen and (min-width: 768px){
+      .css-cvumne-MuiDrawer-docked  .MuiDrawer-paper{ 
+          min-height: calc(100vh - 65px) !important;
+      height: 100vh !important;
+      } 
+  }
+  .css-cvumne-MuiDrawer-docked  .MuiDrawer-paper {
+      transition: 0.2s;
+      width: 270px !important;
+      max-width: 270px !important;
+      
+      background-color:#0542b5 !important;
+      white-space: nowrap;
+      color:white;
+      overflow-x: hidden;
+  }
+  .css-i4bv87-MuiSvgIcon-root{
+    color: white;
+  }
+  .css-wpssva-MuiTypography-root-MuiLink-root{
+    color:white !important; 
+  }
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+    border-color: white !important;
+  }
+
+
+
+
+
+   
+
+

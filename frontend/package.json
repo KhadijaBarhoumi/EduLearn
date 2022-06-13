@@ -15,7 +15,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
     "pdf-viewer-reactjs": "^2.2.3",
-    "pdfjs-dist": "^2.6.347",
+    "pdfjs-dist": "^2.14.305",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-admin": "^3.19.11",

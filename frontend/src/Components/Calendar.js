@@ -257,6 +257,7 @@ export default function Calendar() {
           )}
         </Drawer>
         <Box
+        className="background"
           component="main"
           sx={{
             backgroundColor: (theme) =>

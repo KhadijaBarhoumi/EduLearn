@@ -36,8 +36,8 @@ import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout"; // insta
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 // Worker
-import { Pdf } from "./Pdf";
 import { useSelector } from "react-redux";
+import Test from "./courPdf"
 
 const drawerWidth = 240;
 
@@ -89,7 +89,7 @@ function Cours({ search }) {
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <Drawer variant="permanent" open={open}>
+        <Drawer variant="permanent" open={open2}>
           <Toolbar
             sx={{
               display: "flex",
@@ -261,13 +261,13 @@ function Cours({ search }) {
                   <ListItemIcon>
                     <PersonIcon />
                   </ListItemIcon>
-                  <ListItemText primary=" Studentboard" />
+                  <ListItemText primary=" Teachersboard" />
                 </ListItemButton>
               </Link>
             </List>
           )}
         </Drawer>
-        <Drawer variant="permanent" open={open2}>
+        <Drawer variant="permanent" open={open} style={{marginLeft:"70px"}}>
           <Toolbar
             sx={{
               display: "flex",
@@ -277,7 +277,13 @@ function Cours({ search }) {
             }}
           >
             <IconButton onClick={toggleDrawer2}>
-              Material Name
+              <p className="log">
+              Material
+                <strong className="mainname" style={{ color: "#a904f5" }}>
+                N
+                </strong>
+                ame
+              </p>
               <ChevronLeftIcon />
             </IconButton>
           </Toolbar>
@@ -296,7 +302,9 @@ function Cours({ search }) {
               </div>
             ))}
         </Drawer>
+        
         <Box
+        className="background"
           component="main"
           sx={{
             backgroundColor: (theme) =>
@@ -338,7 +346,7 @@ function Cours({ search }) {
                                   .includes(search.trim().toLowerCase())
                             ).map((el) => (
                               <div>
-                                <Pdf key={el._id} cour={el} />
+                                <Test key={el._id} cour={el} />
                               </div>
                             ))}
                         </div>
@@ -356,3 +364,32 @@ function Cours({ search }) {
 }
 
 export default Cours;
+/*<Drawer variant="permanent" open={open}>
+          <Toolbar
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-end",
+              px: [1],
+            }}
+          >
+            <IconButton onClick={toggleDrawer2}>
+              Material Name
+              <ChevronLeftIcon />
+            </IconButton>
+          </Toolbar>
+          <Divider />
+          {Courses &&
+            Courses.map((el) => (
+              <div key={el._id}>
+                <Link to={`/courDetails/${el._id}`}>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <LibraryBooksIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={el.materialName} />
+                  </ListItemButton>
+                </Link>
+              </div>
+            ))}
+        </Drawer>*/

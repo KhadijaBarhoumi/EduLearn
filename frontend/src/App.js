@@ -25,6 +25,7 @@ import CommentSection from "./Components/post/CommentSection";
 import AddPost from "./Components/post/AddPost";
 import { getPosts } from "./Redux/Actions/postaction";
 import Footer from "./Footer";
+import StudentsList from "./Components/StudentsList";
 
 function App() {
   const dispatch = useDispatch();
@@ -148,7 +149,7 @@ function App() {
           element={
             <PrivateRoute>
               <NavBar HandleFiltre={HandleFiltre} />
-              <TeachersList />
+              <StudentsList />
               <Footer />
             </PrivateRoute>
           }

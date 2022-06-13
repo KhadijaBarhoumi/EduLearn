@@ -279,10 +279,8 @@ export default function PostList() {
         >
           <Container sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              {/* Chart */}
-
-              {/* Recent Orders */}
-              <Grid item xs={12}>
+              {/* posts */}
+              <Grid item xs={12} >
                 <Paper className="paperback">
                   <ThemeProvider theme={theme}>
                     <Container component="main">
@@ -291,7 +289,7 @@ export default function PostList() {
                           marginLeft: 10,
                           marginTop: 8,
                           display: "flex",
-                          flexWrap: "wrap",
+                          flexWrap: "wrap"
                         }}
                       >
                         {posts &&

@@ -23,7 +23,7 @@ const Post = ({ post }) => {
   return (
     <>
       {user ? (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345 }} style={{ width: "22rem"  }}>
           <CardMedia
             component="img"
             height="140"
@@ -39,12 +39,11 @@ const Post = ({ post }) => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Share</Button>
-            <Link to={`/postDetails/${post._id}`}>
+          <Link to={`/postDetails/${post._id}`} style={{margin:"10px"}}>
               {" "}
-              <Button size="small">Learn More</Button>
+              <Button size="small" style={{backgroundColor:" #0542b5",color:" white",margin:"10px"}}>Details</Button>
             </Link>
-            <Button size="small" onClick={() => dispatch(deletePost(post._id))}>
+            <Button size="small" onClick={() => dispatch(deletePost(post._id))} style={{backgroundColor:" #0542b5",color:" white"}}>
               Delete
             </Button>
           </CardActions>

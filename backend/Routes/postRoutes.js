@@ -31,7 +31,7 @@ router.get("/allPosts", async (req, res) => {
 router.get("/getPost/:id",isAuth(), async (req, res) => {
     const { id } = req.params;
     try {
-      const getOnePost = await Post.findById(id);
+      const getOnePost = await Post.findById(id).populate("user");
       res.send({getOnePost});
     } catch (err) {
       res.status(400).send(err.message);
@@ -43,7 +43,7 @@ router.get("/getPost/:id",isAuth(), async (req, res) => {
     const { id } = req.params;
     const { title, message,question } = req.body;
     try {
-      const updatedPost  =await Post.findByIdAndUpdate(id,{ title, message,question },{ new: true });
+      const updatedPost  =await Post.findByIdAndUpdate(id,{ title, message,question },{ new: true }).populate("user");
      
       res.send({updatedPost});
     } catch (err) {
@@ -53,10 +53,9 @@ router.get("/getPost/:id",isAuth(), async (req, res) => {
 
   
   //delete Post
-  router.delete("/deletePost/:id",isAuth(), async (req, res) => {
-    const { id } = req.params;
+  router.delete("/deletePost/:id" ,async (req, res) => {
     try {
-      const deletPost = await Post.findByIdAndDelete(id);
+      const deletPost = await Post.deleteOne({ _id: req.params.id });
       console.log(deletPost);
       if (deletPost.deletedCount == 1) {
         return res.send({ msg: "post secessufly deleted" });
@@ -68,14 +67,14 @@ router.get("/getPost/:id",isAuth(), async (req, res) => {
   });
 
   //commentPost
-  router.put("/commentPost/:id", async (req, res) => {
+  router.put("/commentPost/:id", isAuth(),async (req, res) => {
     const { id } = req.params;
     const comment = {
-      text: req.body.text
+      text: req.body.text,
+      user:req.user._id
     };
     try {
-      const commentpost = await Post.findByIdAndUpdate(id,{$push: { comments: comment },}
-      ,{new:true});
+      const commentpost = await Post.findByIdAndUpdate(id,{$push: { comments: comment },},{new:true}).populate("user");
       res.send({ Post :commentpost, message: "comment succesffuly posted" });
     } catch (err) {
       res.status(400).send(err.message);

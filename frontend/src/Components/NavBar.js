@@ -163,7 +163,7 @@ const NavBar = ({ HandleFiltre }) => {
               )
             )}
           </Box>
-          <Search style={{ backgroundColor: "#a904f5" }}>
+          <Search style={{ backgroundColor: "#0542b5" }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -178,19 +178,18 @@ const NavBar = ({ HandleFiltre }) => {
               onSubmit={HandelSubmit}
             />
           </Search>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
+          <IconButton color="inherit" style={{ backgroundColor: "#0542b5" }}>
+            <Badge badgeContent={5} style={{color:" #fff" }} >
+              <NotificationsIcon  />
             </Badge>
           </IconButton>
           <Box sx={{ flexGrow: 0.5 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 2 }}>
                 <Avatar alt="Remy Sharp" src={user && user.image} />
               </IconButton>
             </Tooltip>
-            {user && user.firstName}
-
+            <span style={{ color: "#0542b5" ,fontSize:"20px"}}>{user && user.firstName}</span>
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"

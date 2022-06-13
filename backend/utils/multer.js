@@ -16,12 +16,13 @@ const upload = path =>
         file.mimetype === 'image/png' ||
         file.mimetype === 'image/jpg' ||
         file.mimetype === 'image/jpeg'||
-        file.mimetype === 'video/mp4'
+        file.mimetype === 'video/mp4' ||
+        file.mimetype === 'application/pdf'
       ) {
         cb(null, true);
       } else {
         cb(null, false);
-        return cb(new Error('Only .png, .jpg, .mp4 and .jpeg format allowed!'));
+        return cb(new Error('Only .pdf .png, .jpg, .mp4 and .jpeg format allowed!'));
       }
     },
   });

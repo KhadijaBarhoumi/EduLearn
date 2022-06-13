@@ -1,6 +1,7 @@
 import * as React from "react";
 import "../../App.css";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function Chart() {
   const user = useSelector((state) => state.userReducer.currentUser);
@@ -44,7 +45,7 @@ export default function Chart() {
                 </div>
               </div>
             </div>
-            <a href="/graduation-report">
+            <Link  to="/cours">
               <button
                 type="button"
                 style={{
@@ -57,7 +58,7 @@ export default function Chart() {
               >
                 <span>Resume our course</span>
               </button>
-            </a>
+            </Link >
           </div>
           <img
             className="dashboard-welcome__image"
@@ -85,7 +86,7 @@ export default function Chart() {
                 <span> guild</span>
               </div>
             </div>
-            <a href="/graduation-report">
+            <Link  to="/cours">
               <button
                 type="button"
                 style={{
@@ -98,7 +99,7 @@ export default function Chart() {
               >
                 <span> your course</span>
               </button>
-            </a>
+            </Link>
           </div>
           <img
             className="dashboard-welcome__image"

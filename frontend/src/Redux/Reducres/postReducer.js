@@ -1,5 +1,13 @@
-import { LOAD_POST,GET_ALL,GET_ALL_FAIL, 
-    CREATE_SUCCESS,CREATE_FAIL, UPDATE,GET_POST,GET_POST_FAIL, DELETE,COMMENT_SUCCESS,COMMENT_FAIL,LIKE } 
+import { LOAD_POST,
+  GET_ALL,
+  GET_ALL_FAIL, 
+    CREATE_SUCCESS,
+    CREATE_FAIL,
+     UPDATE,GET_POST,
+     GET_POST_FAIL,
+     COMMENT_SUCCESS,
+     COMMENT_FAIL,
+     LIKE } 
     from '../ActionsTypes/postConstant';
     
     const intialState = {
@@ -34,8 +42,7 @@ import { LOAD_POST,GET_ALL,GET_ALL_FAIL,
                   return { ...state, errors: payload };             
                case UPDATE:
           return {...state,posts:state.posts.map((post) => (post._id == payload._id ? payload : post))};
-          case DELETE:
-         return  { ...state, posts:state.posts.filter((post) => (post._id == payload._id ? payload : post))}; 
+          
     
               default:
           return state;

@@ -7,7 +7,8 @@ import { LOAD_POST,
     UPDATE,
     GET_POST,
     GET_POST_FAIL,
-     DELETE,
+    DELETE_POST_SUCCESS,
+    DELETE_POST_FAIL,
      COMMENT_SUCCESS,
      COMMENT_FAIL,
      LIKE,
@@ -23,11 +24,12 @@ export const createPost = (newPost,navigate) => async (dispatch) => {
       const opts = {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       };
-        const {data} = await axios.post(
+        const response = await axios.post(
             "http://localhost:5000/post/addPost",newPost,opts
             
           );
-          dispatch({ type: CREATE_SUCCESS, payload: data })
+          dispatch({ type: CREATE_SUCCESS, payload: response.data });
+          dispatch(getPosts)
           navigate("/posts");
         } catch (error) {
             console.dir(error)
@@ -60,8 +62,10 @@ export const getPost = (id) => async (dispatch) => {
           };
         const {data} = await axios.get(
             `http://localhost:5000/post/getPost/${id}`,opts);
+            console.log(data)
           dispatch({ type:GET_POST , payload: data })
-        } catch (error) {
+        } 
+        catch (error) {
             console.dir(error)
             dispatch({ type: GET_POST_FAIL, payload: error });
         } 
@@ -83,22 +87,19 @@ export const getPost = (id) => async (dispatch) => {
            } 
              };       
 
-  //deletePOst           
-  export const deletePost = (id) => async (dispatch) => {
-    try {
-      const opts = {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      };
-          const {data} = await axios.delete(
-            `http://localhost:5000/post/deletePost/${id}`,opts);
-                       
-             dispatch({ type:DELETE , payload: data })
-             dispatch(getPosts());
-            
+  //deletePOst    
+          export const deletePost = (id) => async (dispatch) => {
+            try {
+              const response = await axios.delete(
+                `http://localhost:5000/post/deletePost/${id}`
+              );
+              dispatch({ type: DELETE_POST_SUCCESS });
+              dispatch(getPosts());
             } catch (error) {
-           console.dir(error)
-         } 
-           };   
+              console.dir(error);
+              dispatch({ type: DELETE_POST_FAIL, payload: error });
+            }
+          }; 
 
   //commentPOst
     export const commentPost = (id,newcomment) => async (dispatch) => {
@@ -109,7 +110,7 @@ export const getPost = (id) => async (dispatch) => {
             const respense = await axios.put(
               `http://localhost:5000/post/commentPost/${id}`,{text:newcomment,
             postId:id},opts);
-                         
+                   console.log( respense.data)      
                dispatch({ type:COMMENT_SUCCESS , payload: respense.data })
               } catch (error) {
              console.dir(error)

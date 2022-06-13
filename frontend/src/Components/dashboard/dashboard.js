@@ -11,7 +11,6 @@ import IconButton from "@mui/material/IconButton";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import Link2 from "@mui/material/Link";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -72,7 +71,7 @@ function Dashboard() {
   };
 
   return (
-    <ThemeProvider theme={mdTheme}>
+    <ThemeProvider theme={mdTheme} >
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
 
@@ -82,7 +81,7 @@ function Dashboard() {
               display: "flex",
               alignItems: "center",
               justifyContent: "flex-end",
-              px: [1],
+              px: [0],
             }}
           >
             <IconButton onClick={toggleDrawer}>

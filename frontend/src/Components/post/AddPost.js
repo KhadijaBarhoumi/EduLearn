@@ -87,14 +87,17 @@ export default function AddPost() {
     data.append("title", title);
     data.append("message", message);
     data.append("question", question);
-
     console.log({
       title: data.get("title"),
       message: data.get("message"),
-
       question: data.get("question"),
     });
-    dispatch(createPost(data, navigate));
+    dispatch(createPost({
+      title: data.get("title"),
+      message: data.get("message"),
+      question: data.get("question")}
+    , navigate));
+    
   };
 
   return (
@@ -281,6 +284,7 @@ export default function AddPost() {
           )}
         </Drawer>
         <Box
+          className="background"
           component="main"
           sx={{
             backgroundColor: (theme) =>
@@ -332,9 +336,9 @@ export default function AddPost() {
                             required
                             fullWidth
                             id="title"
-                            label="title"
+                            label="Title"
+                            type="string"
                             name="title"
-                            autoComplete="no"
                             onChange={(e) => setTitle(e.target.value)}
                           />
                           <TextField
@@ -344,7 +348,7 @@ export default function AddPost() {
                             id="question"
                             label="question"
                             name="question"
-                            autoComplete="no"
+                            type="string"
                             onChange={(e) => setQuestion(e.target.value)}
                           />
                           <TextField
@@ -353,9 +357,8 @@ export default function AddPost() {
                             fullWidth
                             name="message"
                             label="message"
-                            type="message"
                             id="message"
-                            autoComplete="no"
+                            type="string"
                             onChange={(e) => setMessage(e.target.value)}
                           />
 

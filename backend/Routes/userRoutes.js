@@ -114,7 +114,7 @@ router.get("/getuserbyid", async (req, res) => {
 
 //get all usres
 
-router.get('/all',isAuth(),isProf,async(req,res)=>{
+router.get('/all',isAuth(),async(req,res)=>{
   const allUsers=await User.find()
   res.send({allUsers})
 })

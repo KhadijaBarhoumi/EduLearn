@@ -19,13 +19,13 @@ export const addCour = (newCour, navigate) => async (dispatch) => {
       const opts = {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       };
-      console.log(newCour.get("file"))
+      //console.log(newCour.get("file"))
       const response = await axios.post(
         "http://localhost:5000/cour/addCour",
         newCour,opts
       );
       console.log(response);
-      dispatch({ type: ADD_COURS_SUCCESS,payload:response.data });
+      dispatch({ type: ADD_COURS_SUCCESS , payload:response.data });
       navigate("/cours");
     } catch (error) {
       console.dir(error);
@@ -40,6 +40,7 @@ export const addCour = (newCour, navigate) => async (dispatch) => {
       };
       const response = await axios.get("http://localhost:5000/cour/courses",opts);
       dispatch({ type: GET_ALL_COURS_SUCCESS, payload: response.data });
+      console.log(response.data)
     } catch (error) {
       console.log(error);
       dispatch({ type: GET_ALL_COURS_FAIL, payload: error });

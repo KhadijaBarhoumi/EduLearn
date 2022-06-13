@@ -85,7 +85,7 @@ function TeachersList() {
   };
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: "flex" }} className="backk">
+      <Box sx={{ display: "flex" }}  className="background">
         <CssBaseline />
         <Drawer variant="permanent" open={open}>
           <Toolbar
@@ -267,6 +267,7 @@ function TeachersList() {
         </Drawer>
 
         <Box
+      
           className="order"
           component="main"
           sx={{
@@ -279,7 +280,7 @@ function TeachersList() {
             overflow: "auto",
           }}
         >
-          <div>Students List</div>
+          <div style={{color:"#0542b5" ,fontSize:"50px",textAlign:"center"}}>Teachers List</div>
           <Table size="small">
             <TableHead>
               <TableRow>
@@ -288,12 +289,10 @@ function TeachersList() {
                 <TableCell>First Name</TableCell>
                 <TableCell>Last Name</TableCell>
                 <TableCell>Email</TableCell>
-                <TableCell>Ban</TableCell>
-                <TableCell align="right">Role</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {Students.map((row) => (
+              {Students.map((row) => ( row.role == "prof" ?(
                 <TableRow key={row._id}>
                   <TableCell>{row.createdOn}</TableCell>
                   <TableCell>
@@ -302,22 +301,7 @@ function TeachersList() {
                   <TableCell>{row.firstName}</TableCell>
                   <TableCell>{row.lastName}</TableCell>
                   <TableCell>{row.email}</TableCell>
-                  <TableCell>
-                    <FormControlLabel
-                      control={
-                        <Checkbox checked={checked} onChange={handleChange1} />
-                      }
-                      label="student"
-                    />
-                  </TableCell>
-                  <TableCell align="right">{row.role}</TableCell>
-                  <DeleteForeverIcon
-                    size="small"
-                    onClick={() => dispatch(deleteUser(row._id))}
-                  >
-                    Delete
-                  </DeleteForeverIcon>
-                </TableRow>
+                </TableRow>):null
               ))}
             </TableBody>
           </Table>

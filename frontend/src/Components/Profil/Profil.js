@@ -34,23 +34,6 @@ import ListItemText from "@mui/material/ListItemText";
 import { Link } from "react-router-dom";
 import "../dashboard/listItems.css";
 import "./Profil.css";
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link2 color="inherit" href="https://mui.com/">
-        Your Website
-      </Link2>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const drawerWidth = 240;
 
@@ -107,6 +90,10 @@ function Profil() {
     console.log(data.get("file"));
     data.append("firstName", newuser.firstName);
     console.log(data.get("firstName"));
+    data.append("lastName", newuser.lastName);
+    console.log(data.get("lastName"));
+    data.append("email", newuser.email);
+    console.log(data.get("email"));
     dispatch(editUser(oldUser._id, data, navigate));
   };
 
@@ -276,6 +263,7 @@ function Profil() {
           )}
         </Drawer>
         <Box
+          className="background"
           component="main"
           sx={{
             backgroundColor: (theme) =>
@@ -309,12 +297,17 @@ function Profil() {
                           <div>
                             <div className="container rounded bg-white mt-5 mb-5">
                               <div className="row">
-                                <form>
-                                  <div className="col-md-3 border-right">
+                              
+                                <form style={{alignItems:"center"}}>
+                                        <h4 className="text-right" style={{alignItems:"center"}}>
+                                          Profile Settings
+                                        </h4>
+                                  <div className="" style={{alignItems:"center"}}>
                                     <div className="d-flex flex-column align-items-center text-center p-3 py-5">
                                       <img
                                         className="rounded-circle mt-5"
                                         width="150px"
+                                        alt="user"
                                         src={newuser && newuser.image}
                                       />
                                       <Stack
@@ -342,22 +335,18 @@ function Profil() {
                                         </label>
                                       </Stack>
                                       <span className="font-weight-bold">
-                                        {oldUser && oldUser.firstName}
+                                        {oldUser && oldUser.firstName}{" "}{oldUser && oldUser.lastName}
                                       </span>
                                       <span className="text-black-50">
-                                        {oldUser && oldUser.email}
+                                      You are a {oldUser && oldUser.role} of Edulearn
                                       </span>
-                                      <span> </span>
+                                      <span> {oldUser && oldUser.email} </span>
+                                      <span> {oldUser && oldUser.createdOn} </span>
                                     </div>
                                   </div>
 
-                                  <div className="col-md-5 border-right">
+                                  <div className="" style={{alignItems:"center"}}>
                                     <div className="p-3 py-5">
-                                      <div className="d-flex justify-content-between align-items-center mb-3">
-                                        <h4 className="text-right">
-                                          Profile Settings
-                                        </h4>
-                                      </div>
                                       <div className="row mt-2">
                                         <div className="col-md-6">
                                           <label className="labels">
@@ -401,24 +390,21 @@ function Profil() {
                                       <div className="row mt-3">
                                         <div className="col-md-6">
                                           <label className="labels">
-                                            Country
+                                          Email
                                           </label>
                                           <input
                                             type="text"
                                             className="form-control"
                                             placeholder="country"
-                                            defaultValue
-                                          />
-                                        </div>
-                                        <div className="col-md-6">
-                                          <label className="labels">
-                                            State/Region
-                                          </label>
-                                          <input
-                                            type="text"
-                                            className="form-control"
-                                            defaultValue
-                                            placeholder="state"
+                                            defaultValue={
+                                              oldUser && oldUser.email
+                                            }
+                                            onChange={(e) =>
+                                              setNewuser({
+                                                ...newuser,
+                                                email: e.target.value,
+                                              })
+                                            }
                                           />
                                         </div>
                                       </div>
@@ -434,41 +420,6 @@ function Profil() {
                                     </div>
                                   </div>
                                 </form>
-                                <div className="col-md-4">
-                                  <div className="p-3 py-5">
-                                    <div className="d-flex justify-content-between align-items-center experience">
-                                      <span>Edit Experience</span>
-                                      <span className="border px-3 p-1 add-experience">
-                                        <i className="fa fa-plus" />
-                                        &nbsp;Experience
-                                      </span>
-                                    </div>
-                                    <br />
-                                    <div className="col-md-12">
-                                      <label className="labels">
-                                        Experience in Designing
-                                      </label>
-                                      <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="experience"
-                                        defaultValue
-                                      />
-                                    </div>{" "}
-                                    <br />
-                                    <div className="col-md-12">
-                                      <label className="labels">
-                                        Additional Details
-                                      </label>
-                                      <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="additional details"
-                                        defaultValue
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
                               </div>
                             </div>
                           </div>
@@ -479,7 +430,6 @@ function Profil() {
                 </Paper>
               </Grid>
             </Grid>
-            <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
       </Box>

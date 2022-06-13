@@ -1,10 +1,8 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import Link2 from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
@@ -32,7 +30,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { deleteCour, getOneCour } from "../../Redux/Actions/Couraction";
 import { useNavigate } from "react-router-dom";
+import PersonIcon from "@mui/icons-material/Person";
+import ArticleIcon from "@mui/icons-material/Article";
 import "../dashboard/listItems.css";
+import PDFViewer from 'pdf-viewer-reactjs';
 // Import the main component
 import { Viewer } from "@react-pdf-viewer/core"; // install this library
 // Plugins
@@ -44,23 +45,6 @@ import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 import { Worker } from "@react-pdf-viewer/core"; // install this library
 import { useEffect } from "react";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link2 color="inherit" href="https://mui.com/">
-        Your Website
-      </Link2>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const drawerWidth = 240;
 
@@ -99,7 +83,7 @@ const Cour = () => {
   const courses = useSelector((state) => state.courReducer.courses);
   const Cour = useSelector((state) => state.courReducer.cour);
   const loding = useSelector((state) => state.courReducer.loading);
-
+   const lien=Cour.content;
   //console.log(Cour)
   // Create new plugin instance
 
@@ -124,190 +108,220 @@ const Cour = () => {
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
 
-        <Drawer variant="permanent" open={open}>
-          <Toolbar
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-end",
-              px: [1],
-            }}
-          >
-            <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </Toolbar>
-          <Divider />
-          {user.role == "prof" ? (
-            <List component="nav">
-              <Link to="/dashboard">
-                <ListItemButton>
-                  <ListItemIcon>
-                    <DashboardIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Dashboard" />
-                </ListItemButton>
-              </Link>
-              <Link to="/cours">
-                <ListItemButton>
-                  <ListItemIcon>
-                    <LibraryBooksIcon />
-                  </ListItemIcon>
-                  <ListItemText primary=" Course" />
-                </ListItemButton>
-              </Link>
-              <Link to="/library">
-                <ListItemButton>
-                  <ListItemIcon>
-                    <VideoLibraryIcon />
-                  </ListItemIcon>
-                  <ListItemText primary=" Library" />
-                </ListItemButton>
-              </Link>
-              <Link to="/posts">
-                <ListItemButton>
-                  <ListItemIcon>
-                    <DynamicFeedIcon />
-                  </ListItemIcon>
-                  <ListItemText primary=" Posts" />
-                </ListItemButton>
-              </Link>
-              <Link to="/Calendar">
-                <ListItemButton>
-                  <ListItemIcon>
-                    <CalendarMonthIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Calendar" />
-                </ListItemButton>
-              </Link>
-              <Link to="/addCour">
-                <ListItemButton>
-                  <ListItemIcon>
-                    <AddCardIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Add Course" />
-                </ListItemButton>
-              </Link>
-              <Link to="/addtolab">
-                <ListItemButton>
-                  <ListItemIcon>
-                    <AddCardIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Add Video" />
-                </ListItemButton>
-              </Link>
-              <Link to="/addPost">
-                <ListItemButton>
-                  <ListItemIcon>
-                    <AddCardIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Add Post" />
-                </ListItemButton>
-              </Link>
-
-              <Link to="/student">
-                <ListItemButton>
-                  <ListItemIcon>
-                    <PeopleIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Students" />
-                </ListItemButton>
-              </Link>
-              <ListItemButton>
-                <ListItemIcon>
-                  <BarChartIcon />
-                </ListItemIcon>
-                <ListItemText primary="Reports" />
-              </ListItemButton>
-              <ListItemButton>
-                <ListItemIcon>
-                  <LayersIcon />
-                </ListItemIcon>
-                <ListItemText primary="All course" />
-              </ListItemButton>
-            </List>
-          ) : (
-            <List component="nav">
-              <Link to="/dashboard">
-                <ListItemButton>
-                  <ListItemIcon>
-                    <DashboardIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Dashboard" />
-                </ListItemButton>
-              </Link>
-              <Link to="/cours">
-                <ListItemButton>
-                  <ListItemIcon>
-                    <LibraryBooksIcon />
-                  </ListItemIcon>
-                  <ListItemText primary=" Course" />
-                </ListItemButton>
-              </Link>
-              <Link to="/library">
-                <ListItemButton>
-                  <ListItemIcon>
-                    <VideoLibraryIcon />
-                  </ListItemIcon>
-                  <ListItemText primary=" Library" />
-                </ListItemButton>
-              </Link>
-              <Link to="/posts">
-                <ListItemButton>
-                  <ListItemIcon>
-                    <DynamicFeedIcon />
-                  </ListItemIcon>
-                  <ListItemText primary=" Posts" />
-                </ListItemButton>
-              </Link>
-              <Link to="/addPost">
-                <ListItemButton>
-                  <ListItemIcon>
-                    <AddCardIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Add Post" />
-                </ListItemButton>
-              </Link>
-              <Link to="/Calendar">
-                <ListItemButton>
-                  <ListItemIcon>
-                    <CalendarMonthIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Calendar" />
-                </ListItemButton>
-              </Link>
-            </List>
-          )}
-        </Drawer>
         <Drawer variant="permanent" open={open2}>
-          <Toolbar
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-end",
-              px: [1],
-            }}
-          >
-            <IconButton onClick={toggleDrawer2}>
-              Material Name
-              <ChevronLeftIcon />
-            </IconButton>
-          </Toolbar>
-          <Divider />
-          {courses &&
-            courses.map((el) => (
-              <div key={el._id}>
-                <Link to={`/courDetails/${el._id}`}>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <LibraryBooksIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={el.materialName} />
-                  </ListItemButton>
-                </Link>
-              </div>
-            ))}
-        </Drawer>
+        <Toolbar
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            px: [1],
+          }}
+        >
+          <IconButton onClick={toggleDrawer}>
+            <p className="log">
+              COU
+              <strong className="mainname" style={{ color: "#a904f5" }}>
+                R
+              </strong>
+              SE
+            </p>
+            <ChevronLeftIcon />
+          </IconButton>
+        </Toolbar>
+        <Divider />
+        {user.role == "prof" ? (
+          <List component="nav">
+            <Link to="/dashboard">
+              <ListItemButton>
+                <ListItemIcon>
+                  <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Dashboard" />
+              </ListItemButton>
+            </Link>
+            <Link to="/cours">
+              <ListItemButton>
+                <ListItemIcon>
+                  <LibraryBooksIcon />
+                </ListItemIcon>
+                <ListItemText primary=" Course" />
+              </ListItemButton>
+            </Link>
+            <Link to="/library">
+              <ListItemButton>
+                <ListItemIcon>
+                  <VideoLibraryIcon />
+                </ListItemIcon>
+                <ListItemText primary=" Library" />
+              </ListItemButton>
+            </Link>
+            <Link to="/posts">
+              <ListItemButton>
+                <ListItemIcon>
+                  <DynamicFeedIcon />
+                </ListItemIcon>
+                <ListItemText primary=" Posts" />
+              </ListItemButton>
+            </Link>
+            <Link to="/Calendar">
+              <ListItemButton>
+                <ListItemIcon>
+                  <CalendarMonthIcon />
+                </ListItemIcon>
+                <ListItemText primary="Calendar" />
+              </ListItemButton>
+            </Link>
+            <Link to="/addCour">
+              <ListItemButton>
+                <ListItemIcon>
+                  <AddCardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Add Course" />
+              </ListItemButton>
+            </Link>
+            <Link to="/addtolab">
+              <ListItemButton>
+                <ListItemIcon>
+                  <AddCardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Add Video" />
+              </ListItemButton>
+            </Link>
+            <Link to="/addPost">
+              <ListItemButton>
+                <ListItemIcon>
+                  <AddCardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Add Post" />
+              </ListItemButton>
+            </Link>
+
+            <Link to="/student">
+              <ListItemButton>
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Students" />
+              </ListItemButton>
+            </Link>
+            <ListItemButton>
+              <ListItemIcon>
+                <BarChartIcon />
+              </ListItemIcon>
+              <ListItemText primary="Reports" />
+            </ListItemButton>
+            <ListItemButton>
+              <ListItemIcon>
+                <LayersIcon />
+              </ListItemIcon>
+              <ListItemText primary="All course" />
+            </ListItemButton>
+          </List>
+        ) : (
+          <List component="nav">
+            <Link to="/dashboard">
+              <ListItemButton>
+                <ListItemIcon>
+                  <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Dashboard" />
+              </ListItemButton>
+            </Link>
+            <Link to="/cours">
+              <ListItemButton>
+                <ListItemIcon>
+                  <LibraryBooksIcon />
+                </ListItemIcon>
+                <ListItemText primary=" Course" />
+              </ListItemButton>
+            </Link>
+            <Link to="/library">
+              <ListItemButton>
+                <ListItemIcon>
+                  <VideoLibraryIcon />
+                </ListItemIcon>
+                <ListItemText primary=" Library" />
+              </ListItemButton>
+            </Link>
+            <Link to="/posts">
+              <ListItemButton>
+                <ListItemIcon>
+                  <DynamicFeedIcon />
+                </ListItemIcon>
+                <ListItemText primary=" Posts" />
+              </ListItemButton>
+            </Link>
+            <Link to="/addPost">
+              <ListItemButton>
+                <ListItemIcon>
+                  <AddCardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Add Post" />
+              </ListItemButton>
+            </Link>
+            <Link to="/Calendar">
+              <ListItemButton>
+                <ListItemIcon>
+                  <CalendarMonthIcon />
+                </ListItemIcon>
+                <ListItemText primary="Calendar" />
+              </ListItemButton>
+            </Link>
+            <Link className="side-bar" to="/Performance">
+              <ListItemButton>
+                <ListItemIcon>
+                  <ArticleIcon />
+                </ListItemIcon>
+                <ListItemText primary=" Performance" />
+              </ListItemButton>
+            </Link>
+            <Link className="side-bar" to="/Studentboard">
+              <ListItemButton>
+                <ListItemIcon>
+                  <PersonIcon />
+                </ListItemIcon>
+                <ListItemText primary=" Studentboard" />
+              </ListItemButton>
+            </Link>
+          </List>
+        )}
+      </Drawer>
+      <Drawer variant="permanent" open={open} style={{marginLeft:"70px"}}>
+        <Toolbar
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            px: [1],
+          }}
+        >
+          <IconButton onClick={toggleDrawer2}>
+            <p className="log">
+            Material
+              <strong className="mainname" style={{ color: "#a904f5" }}>
+              N
+              </strong>
+              ame
+            </p>
+            <ChevronLeftIcon />
+          </IconButton>
+        </Toolbar>
+        <Divider />
+        {courses &&
+          courses.map((el) => (
+            <div key={el._id}>
+              <Link to={`/courDetails/${el._id}`}>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <LibraryBooksIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={el.title}hhh />
+                  
+                </ListItemButton>
+              </Link>
+            </div>
+          ))}
+      </Drawer>
         <Box
           component="main"
           sx={{
@@ -322,9 +336,9 @@ const Cour = () => {
         >
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              {/* Chart */}
+              
 
-              {/* Recent Orders */}
+              {/* Course */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
                   <ThemeProvider theme={theme}>
@@ -342,7 +356,12 @@ const Cour = () => {
                           "loding..."
                         ) : (
                           <div>
-                            <div className="container">
+                          <PDFViewer
+                          document={{
+                              url: lien,
+                          }}
+                      />
+                            <div >
                               <br></br>
                               <br></br>
                               <h4> {Cour.title}</h4>
@@ -359,34 +378,17 @@ const Cour = () => {
                             </div>
                           </div>
                         )}
-                        <div>
-                          <div className="container">
-                            <br></br>
-                            <br></br>
-                            <h4> {Cour.title}</h4>
-                            <div className="pdf-container">
-                              {
-                                <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
-                                  <Viewer
-                                    fileUrl={Cour.content}
-                                    plugins={[defaultLayoutPluginInstance]}
-                                  />
-                                </Worker>
-                              }
-                            </div>
-                          </div>
-                        </div>
                       </Box>
                       {user && user.role == "prof" ? (
                         <CardActions>
                           <Link to={`/editCour/${Cour._id}`}>
-                            <Button size="small">Edit</Button>
+                            <Button size="small" style={{backgroundColor:" #0542b5",color:" white"}}>Edit</Button>
                           </Link>
                           <Button
                             size="small"
                             onClick={() =>
                               dispatch(deleteCour(Cour._id), navigate("/cours"))
-                            }
+                            } style={{backgroundColor:" #0542b5",color:" white"}}
                           >
                             Delete
                           </Button>
@@ -397,7 +399,6 @@ const Cour = () => {
                 </Paper>
               </Grid>
             </Grid>
-            <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
       </Box>

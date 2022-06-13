@@ -10,8 +10,9 @@ router.post("/addCour", isAuth(),isProf,upload("cours").single("file"), async (r
     const url = `${req.protocol}://${req.get('host')}`;
     console.log(req.file);
     const { file } = req;
+    const { materialName,title,content} = req.body;
     try {
-      const newCour = new Cour (req.body);
+      const newCour = new Cour ({...req.body,user:req.user._id});
       newCour.content= `${url}/${file.path}`;
       await newCour.save();
       res.send({ cour: newCour, message: "cour succesffuly" });
@@ -22,7 +23,7 @@ router.post("/addCour", isAuth(),isProf,upload("cours").single("file"), async (r
   //getAllCourses
 router.get("/courses",isAuth(), async (req, res) => {
     try {
-      const allCours = await Cour.find({});
+      const allCours = await Cour.find({}).populate("user");
       res.send({ allCours });
     } catch (err) {
       res.status(400).send(err.message);

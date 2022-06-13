@@ -2,7 +2,8 @@ import axios from "axios";
 import {LOAD_LIBRARY,
     CREATE_LIBRARY_SUCCESS,
     CREATE_LIBRARY_FAIL,
-    DELETE_LIBRARY,
+    DELETE_LIBRARY_SUCCESS,
+    DELETE_LIBRARY_FAIL,
     GET_VIDEO,
     GET_VIDEO_FAIL,
     GET_ALL_LIBRARY,
@@ -39,5 +40,17 @@ export const addVideo = (newVideo, navigate) => async (dispatch) => {
     } catch (error) {
       console.log(error);
       dispatch({ type: GET_ALL_LIBRARY_FAIL, payload: error });
+    }
+  };
+  export const deletevideo = (idVideo) => async (dispatch) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/library/delete/${idVideo}`
+      );
+      dispatch({ type: DELETE_LIBRARY_SUCCESS });
+      dispatch(getAllVideos());
+    } catch (error) {
+      console.dir(error);
+      dispatch({ type: DELETE_LIBRARY_FAIL, payload: error });
     }
   };

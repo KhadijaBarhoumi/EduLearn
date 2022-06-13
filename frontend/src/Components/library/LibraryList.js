@@ -262,7 +262,8 @@ const user = useSelector((state) => state.userReducer.currentUser);
       )}
     </Drawer>
       <Box 
-       className="library"
+      className="background"
+       
         component="main"
         sx={{
           backgroundColor: (theme) =>
@@ -277,10 +278,7 @@ const user = useSelector((state) => state.userReducer.currentUser);
         
         <Container  sx={{ mt: 4, mb: 4 }}>
           <Grid container spacing={3}>
-            {/* Chart */}
-            
-            
-            {/* Recent Orders */}
+            {/*library */}
             <Grid item xs={12} >
               <Paper sx={{ ml: 25}} >
               <ThemeProvider theme={theme}>

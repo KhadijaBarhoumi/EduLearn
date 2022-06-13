@@ -85,9 +85,8 @@ const AddCours = () => {
     data.append("file", content);
     data.append("materialName", materialName);
     data.append("title", title);
-
-    console.log(data.get("file"));
-    dispatch(addCour(data, navigate));
+    console.log(data);
+    dispatch(addCour( data, navigate));
     dispatch(getAllcourses());
   };
   return (
@@ -258,6 +257,7 @@ const AddCours = () => {
           )}
         </Drawer>
         <Box
+          className="background"
           component="main"
           sx={{
             backgroundColor: (theme) =>
@@ -311,6 +311,7 @@ const AddCours = () => {
                             id="materialName"
                             label="Name Material"
                             name="materialName"
+                            type="string"
                             autoComplete="no"
                             autoFocus
                             onChange={(e) => setMaterialName(e.target.value)}
@@ -330,7 +331,7 @@ const AddCours = () => {
                             required
                             fullWidth
                             name="file"
-                            label="Content"
+                            label="content"
                             type="file"
                             id="file"
                             onChange={(e) => setContent(e.target.files[0])}

@@ -24,8 +24,6 @@ import {LOAD_COURS,
            return { ...state, courses: payload.allCours, loading: false };
           case GET_ALL_COURS_FAIL:
            return { ...state, errors: payload, loading: false };
-           case LOAD_COURS:
-            return  {...state,loading:true}
           case GET_COUR_SUCCESS:
            return  {...state,cour:payload.oneCour,loading:false}
           case GET_COUR_FAIL:

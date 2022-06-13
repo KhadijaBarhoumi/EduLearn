@@ -319,9 +319,7 @@ const CommentSection = () => {
                         <div className="card__content">
                           <img
                             src={
-                              users &&
-                              users.find((el) => el._id === post.user) &&
-                              users.find((el) => el._id === post.user).image
+                              post && post.user && post.user.image
                             }
                             alt="cc"
                             width={40}
@@ -330,13 +328,8 @@ const CommentSection = () => {
                           <h2>Post By</h2>
                           <h4>
                             {" "}
-                            {users &&
-                              users.find((el) => el._id === post.user) &&
-                              users.find((el) => el._id === post.user)
-                                .firstName}{" "}
-                            {users &&
-                              users.find((el) => el._id === post.user) &&
-                              users.find((el) => el._id === post.user).lastName}
+                            {  post && post.user && post.user.firstName}{" "}
+                            { post && post.user && post.user.lastName}
                           </h4>{" "}
                           At<span>- {post.createdAt}</span> <br />
                           <span className="card__title"> {post.title} </span>
@@ -373,6 +366,7 @@ const CommentSection = () => {
                                     <span>- {el.createdAt}</span> <br />
                                     <p>
                                       <h1>{el.text}</h1>
+                                      <h1>{el && el.user }</h1>
                                     </p>
                                   </div>
                                 ))}
